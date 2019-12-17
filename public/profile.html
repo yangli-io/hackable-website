@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Simple Social Bank</title>
+    <style>
+      .title {
+        padding-top: 15px;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Profile of <span id="name"></span></h2>
+    <div>
+      <div class="title">Savings Amount</div>
+      <div id="savings"></div>
+      <div class="title">Description</div>
+      <div id="description"></div>
+    </div>
+    <form id="transfer">
+      <h3>Fund Transfer to <span id="name-2"></h3>
+      <input id="amount" placeholder="input amount">
+      <button>Give Money</button>
+    </form>
+    <script src="./index.js"></script>
+    <script>
+      getProfile();
+    </script>
+  </body>
+</html>
