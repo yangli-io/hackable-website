@@ -97,26 +97,11 @@ function loadUsers() {
       const htmlArr = results.map(data => {
         return `
           <div class="user">
-            <div><a href='./profile.html?user=${data.username}'>${data.firstName} ${data.lastName}</a></div>
+            <div><a href='./user-profile?user=${data.username}'>${data.firstName} ${data.lastName}</a></div>
             <div>Bank Account: $${data.savings}</div>
           </div>
         `;
       })
       document.querySelector('#users').innerHTML = htmlArr.join('')
-    })
-}
-
-function getProfile() {
-  const searchParam = location.search;
-
-  fetch('/api/user' + searchParam)
-    .then((res) => res.json())
-    .then((result) => {
-      document.querySelector('#name').innerText = `${result.firstName} ${result.lastName}`
-      document.querySelector('#name-2').innerText = `${result.firstName} ${result.lastName}`
-
-      document.querySelector('#savings').innerText = result.savings;
-
-      document.querySelector('#description').innerText = result.description;
     })
 }

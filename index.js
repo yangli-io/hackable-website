@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
+const ejs = require('ejs');
 
 const adapter = new FileSync('db.json')
 const db = low(adapter)
@@ -127,6 +128,34 @@ app.post('/api/transfer', (req, res) => {
   } else {
     res.status(400).json({ message: 'amount is not number' });
   }
+})
+
+app.get('/', (req, res) => {
+  const { title } = req.query;
+
+  ejs.renderFile('./public/index.ejs', { title }, {}, function(err, str){
+    res.send(str);
+  });
+})
+
+app.get('/user-profile', (req, res) => {
+  const { user } = req.query;
+
+  const item = db.get('users')
+    .find({ username: user })
+    .value()
+
+  const data = {
+    username: item.username,
+    firstName: item.firstName,
+    lastName: item.lastName,
+    savings: item.savings,
+    description: item.description,
+  };
+
+  ejs.renderFile('./public/profile.ejs', data, {}, function(err, str){
+    res.send(str);
+  });
 })
 
 app.use(express.static('public'));

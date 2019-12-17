@@ -9,21 +9,18 @@
     </style>
   </head>
   <body>
-    <h2>Profile of <span id="name"></span></h2>
+    <h2>Profile of <span id="name"><%= firstName %> <%= lastName %></span></h2>
     <div>
       <div class="title">Savings Amount</div>
-      <div id="savings"></div>
+      <div id="savings"><%= savings %></div>
       <div class="title">Description</div>
-      <div id="description"></div>
+      <div id="description"><%- description %></div>
     </div>
     <form id="transfer">
-      <h3>Fund Transfer to <span id="name-2"></h3>
+      <h3>Fund Transfer to <%= firstName %> <%= lastName %></h3>
       <input id="amount" placeholder="input amount">
       <button>Give Money</button>
     </form>
     <script src="./index.js"></script>
-    <script>
-      getProfile();
-    </script>
   </body>
 </html>
